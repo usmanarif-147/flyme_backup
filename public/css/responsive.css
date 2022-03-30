@@ -1,0 +1,31 @@
+@media (max-width: 1000px) {
+	.flight-image { max-width: 300px; height: 300px; margin-bottom: 20px; box-shadow: 3px 3px 30px rgb(0 0 0 / 46%);}
+	.fpms-titles { max-width: 100%; margin-bottom: 60px;}
+	.filght-listing-wrap2 .fpms-filght-listing { transform: none; margin-top: 0; }
+	.flight-image span { font-size: 40px; }
+	.filght-listing-wrap .flight-image:before,
+	.filght-listing-wrap3 .flight-image:after { display: none; }
+	.filght-listing-wrap,.filght-listing-wrap2 { padding:  30px 0 !important}
+	.flights-text p {
+	    font-size: 14px;
+	    line-height: 24px;
+	}
+}
+@media (max-width: 767px) {
+	.flight-image { max-width: 200px; height: 200px; }
+	.flight-image span { font-size: 33px; }
+	.flights-text h2 { font-size: 22px; }
+	.flights-text p {
+	    font-size: 13px;
+	    line-height: 20px;
+	}
+	.filght-listing-wrap2 .fpms-filght-listing .row { flex-direction: column-reverse; }
+	.simple-btn { box-shadow: 2px 2px 12px rgb(0 0 0 / 35%); }
+	.fpms-titles h2 { font-size: 23px; }
+	.fpms-titles p { font-size: 13px; line-height: 22px; }
+}
+
+/* Media 0px Start */
+@media (max-width: 480px) {
+	
+}
