@@ -13,14 +13,28 @@ class PilotController extends Controller
     public function dashboard()
     {
         $events = array();
-        $slots = Available::where('user_id', auth()->id())->get();
-        foreach ($slots as $slot) {
-            $events[] = [
-                'id' => $slot->id,
-                'start' => $slot->date_slot,
+        $slots = Available::where('user_id', auth()->id())->get()->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'date' => $item->date,
+                'start' => $item->date_slot
             ];
+        });
+
+        $grouped = $slots->groupBy('date')->map(function ($item) {
+            return $item->count();
+        });
+        $keys = array_keys($grouped->toArray());
+        $i = 0;
+        foreach ($slots->unique('date') as $slot) {
+            $events[] = [
+                'id' => $slot['id'],
+                'start' => $slot['date'],
+                'title' => 'Total number of bookings: ' . $grouped[$keys[$i]],
+            ];
+            $i++;
         }
-        return view('pilot.dashboard',['slots' => $events]);
+        return view('pilot.dashboard', ['slots' => $events]);
     }
 
     public function getSelectedSlots(Request $request)
@@ -32,24 +46,22 @@ class PilotController extends Controller
     {
         $status = false;
         $bookedSlot = '';
-        foreach ($request->slots as $slot)
-        {
-            try{
+        foreach ($request->slots as $slot) {
+            try {
                 $bookedSlot = Available::where('date_slot', new Carbon($slot))->where('user_id', auth()->id())->get();
-                if($bookedSlot->count() > 0){
+                if ($bookedSlot->count() > 0) {
                     $status = true;
                 }
-            }catch(\Exception $ex) {
+            } catch (\Exception $ex) {
                 return response()->json($ex->getMessage());
             }
         }
-        if($status){
+        if ($status) {
             return response()->json(["slot" => $bookedSlot, 'status' => 'exist']);
         }
 
         $arr = [];
-        foreach ($request->slots as $slot)
-        {
+        foreach ($request->slots as $slot) {
             $available = new Available();
             $available->user_id = auth()->id();
             $available->date = $slot;
@@ -69,20 +81,18 @@ class PilotController extends Controller
     public function removeSlot(Request $request)
     {
         $status = false;
-        foreach ($request->slots as $slot)
-        {
-            try{
-                if(Available::where('date_slot', new Carbon($slot))->where('user_id', auth()->id())->delete()){
+        foreach ($request->slots as $slot) {
+            try {
+                if (Available::where('date_slot', new Carbon($slot))->where('user_id', auth()->id())->delete()) {
                     $status = true;
                 }
-            }catch(\Exception $ex) {
+            } catch (\Exception $ex) {
                 return response()->json($ex->getMessage());
             }
         }
-        if($status){
+        if ($status) {
             return response()->json("selected slots deleted successfully");
-        }
-        else{
+        } else {
             return response()->json("no select slots found");
         }
 
@@ -104,6 +114,7 @@ class PilotController extends Controller
 //            'status' => 'new'
 //        ]);
     }
+
 
     public function bookings()
     {

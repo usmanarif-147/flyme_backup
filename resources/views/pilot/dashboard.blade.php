@@ -2,17 +2,15 @@
 
 @section('css')
     <style>
-        .custom_pointer {
-            cursor: no-drop
-        }
-
-        .future{
+        .future {
             background: pink;
         }
-        .today_change{
+
+        .today_change {
             background: black;
         }
-        .past{
+
+        .past {
             background: lightgrey;
             color: white;
         }
@@ -43,6 +41,7 @@
 <div class="calender-details">
     <i class="fa fa-times cross-pop"></i>
     <div class="calender-content">
+        <h2 style="color: black" id="popup-date"> Date </h2>
         <input type="hidden" id="slot_date">
         <div class="select-slots-div">
             <h2 class="calender-title" id="select_title">Select Slots</h2>
@@ -221,41 +220,36 @@
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
                 },
                 navLinks: true, // can click day/week names to navigate views
-                // businessHours: true, // display business hours
                 editable: false,
                 selectable: true,
                 dayMaxEvents: true,
                 showNonCurrentDates: false,
                 businessHours: true,
                 weekends: false,
-                dayCellDidMount: function(arg){
-                    // console.log(arg.date);
-                },
-                dayCellClassNames: function(arg){
-                    if(arg.isFuture){
+                dayCellClassNames: function (arg) {
+                    if (arg.isFuture) {
                         return ['future']
                     }
-                    if(arg.isPast){
+                    if (arg.isPast) {
                         return ['past']
                     }
-                    if(arg.isToday){
-                        return ['bg-success']
+                    if (arg.isToday) {
+                        return ['bg-danger']
                     }
                 },
-                selectAllow: function(select) {
+                selectAllow: function (select) {
                     return moment().diff(select.start, 'days') <= 0
                 },
                 select: function (arg) {
-
                     $('.calender-details').toggleClass('active');
-                    // let now = new Date(moment(arg.start).format('MM-DD-YYYY'));
-                    let now = new Date(moment(arg.start,'MM-DD-YYYY'));
+                    let now = new Date(moment(arg.start, 'MM-DD-YYYY'));
                     let day = ("0" + now.getDate()).slice(-2);
                     let month = ("0" + (now.getMonth() + 1)).slice(-2);
                     let today = now.getFullYear() + "-" + (month) + "-" + (day);
                     $('#slot_date').val(today);
 
-                    // console.log($('#slot_date').val())
+                    // let display = new Date();
+                    $('#popup-date').html(moment(arg.start).format('MMMM-DD-YYYY'));
                     $.ajax({
                         url: "{{route('pilot.get.selected.slots')}}",
                         method: 'post',
@@ -264,7 +258,6 @@
                             now: today,
                         },
                         success: function (res) {
-                            console.log(res);
                             let first_section = $('#first_section').show();
                             let select_title = $('#select_title').show();
                             let second_section = $('#second_section').show();
@@ -316,6 +309,9 @@
                 },
                 events: slots,
                 eventClassNames: ['bg-success'],
+                eventContent: function(arg) {
+                    return { html: '<h6 style="color: black">'+arg.event.title+'</h6>' }
+                }
             });
 
             calendar.render();
@@ -348,25 +344,8 @@
                     if (res.status === 'exist') {
                         console.log("This slot " + res['slot'][0].date_slot + " Already booked")
                     } else {
-                        // window.location.reload()
-                        calendar.render()
+                        window.location.reload()
                     }
-                    // window.location.reload()
-
-                    // $('.calender-details').toggleClass('active')
-                    // let slots = res.slots;
-                    // for (let i = 0; i < slots.length; i++) {
-                    //     calendar.addEvent({
-                    //         start: slots[i].date_slot,
-                    //         // color: slots[i].color,
-                    //         overlap: false,
-                    //         display: 'background',
-                    //         color: '#ff9f89'
-                    //         // allDay: arg.allDay
-                    //     })
-                    //     calendar.unselect()
-                    // }
-
                 },
                 error: function (res) {
                     console.log(res);
@@ -398,29 +377,7 @@
                     slots: slots,
                 },
                 success: function (res) {
-                    console.log(res);
                     window.location.reload();
-                    // if (res.status === 'exist') {
-                    //     console.log("This slot " + res['slot'][0].date_slot + " Already booked")
-                    // } else {
-                    //     window.location.reload()
-                    // }
-                    // window.location.reload()
-
-                    // $('.calender-details').toggleClass('active')
-                    // let slots = res.slots;
-                    // for (let i = 0; i < slots.length; i++) {
-                    //     calendar.addEvent({
-                    //         start: slots[i].date_slot,
-                    //         // color: slots[i].color,
-                    //         overlap: false,
-                    //         display: 'background',
-                    //         color: '#ff9f89'
-                    //         // allDay: arg.allDay
-                    //     })
-                    //     calendar.unselect()
-                    // }
-
                 },
                 error: function (res) {
                     console.log(res);
@@ -428,22 +385,9 @@
             });
         })
 
-    </script>
-
-    <script>
         $(document).on('click', '.cross-pop', function () {
             $('.calender-details').toggleClass('active');
         });
-
-        // $('.cross-pop').click(function () {
-        //     $('.calender-details').toggleClass('active');
-        // });
     </script>
 
-    {{--<script>--}}
-    {{--$(document).on('click', '.event-title', function () {--}}
-    {{--$('.event-title').removeClass("active-event");--}}
-    {{--$(this).addClass("active-event")--}}
-    {{--});--}}
-    {{--</script>--}}
 @endsection

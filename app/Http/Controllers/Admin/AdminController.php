@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Available;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,10 +13,7 @@ class AdminController extends Controller
     public function index()
     {
         $events = array();
-//        $slots = Available::with('user')->get();
         $pilots = User::with('availables')->where('email' ,'!=', 'admin@gmail.com')->get();
-//        dd($slots[0]->availables);
-//        dd($slots[0]->user->name);
         foreach ($pilots as $pilot)
         {
             foreach ($pilot->availables as $slot) {
@@ -23,13 +21,29 @@ class AdminController extends Controller
                     'title' => $pilot->name,
                     'id' => $slot->id,
                     'start' => $slot->date_slot,
-//                    'color' => 'black',
-//                    'display' => 'background'
                 ];
             }
         }
 
         return view('admin.dashboard', ['slots' => $events]);
+    }
+
+    public function availablePilotsAjax(Request $request)
+    {
+        /**
+         * fetch all pilots where relation exist and date matches in child table
+        */
+        $pilots = User::whereHas('availables', function ($query) use ($request) {
+            $query->where('date', new Carbon($request->now));
+        })->get();
+
+        /**
+         * fetch child table data
+         */
+        $pilots->load(['availables' => function($query) use ($request){
+            $query->where('date', $request->now);
+        }]);
+        return response()->json($pilots);
     }
 
     public function bookings()
