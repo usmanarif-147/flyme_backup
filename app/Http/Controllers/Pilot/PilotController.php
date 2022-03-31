@@ -30,7 +30,7 @@ class PilotController extends Controller
             $events[] = [
                 'id' => $slot['id'],
                 'start' => $slot['date'],
-                'title' => 'Total number of bookings: ' . $grouped[$keys[$i]],
+                'title' => 'Total available slots: ' . $grouped[$keys[$i]],
             ];
             $i++;
         }

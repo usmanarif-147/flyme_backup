@@ -13,18 +13,36 @@ class AdminController extends Controller
     public function index()
     {
         $events = array();
-        $pilots = User::with('availables')->where('email' ,'!=', 'admin@gmail.com')->get();
-        foreach ($pilots as $pilot)
+        $slots = Available::all()->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'date' => $item->date,
+                'start' => $item->date_slot,
+                'user_id' => $item->user_id
+            ];
+        });
+
+
+        $grouped = $slots->groupBy('date')->map(function($item){
+            return $item->unique('user_id');
+        });
+
+        $keys = array_keys($grouped->toArray());
+        $i = 0;
+
+//        dd($grouped[$keys[3]]->count());
+
+        foreach ($slots->unique('date') as $slot)
         {
-            foreach ($pilot->availables as $slot) {
-                $events[] = [
-                    'title' => $pilot->name,
-                    'id' => $slot->id,
-                    'start' => $slot->date_slot,
-                ];
-            }
+            $events[] = [
+                'id' => $slot['id'],
+                'start' => $slot['date'],
+                'title' => 'Total pilots available: ' . $grouped[$keys[$i]]->count(),
+            ];
+            $i++;
         }
 
+//        dd($events);
         return view('admin.dashboard', ['slots' => $events]);
     }
 

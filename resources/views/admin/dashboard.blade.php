@@ -204,6 +204,7 @@
 <div class="calender-details">
     <i class="fa fa-times cross-pop"></i>
     <div class="calender-content">
+        <h2 style="color: black" id="popup-date"> Date </h2>
         <ul class="flights-wrapper">
             <li>
                 <h2 class="calender-title event-title">Gleitflug</h2>
@@ -345,6 +346,7 @@
                     let month = ("0" + (now.getMonth() + 1)).slice(-2);
                     let today = now.getFullYear() + "-" + (month) + "-" + (day);
 
+                    $('#popup-date').html(moment(arg.start).format('MMMM-DD-YYYY'));
                     $.ajax({
                         url: "{{route('available.pilots.ajax')}}",
                         method: 'post',
@@ -374,7 +376,11 @@
                         }
                     })
                 },
-                events: slots
+                events: slots,
+                eventClassNames: ['bg-success'],
+                eventContent: function(arg) {
+                    return { html: '<h6 style="color: black">'+arg.event.title+'</h6>' }
+                }
             });
 
             calendar.render();
