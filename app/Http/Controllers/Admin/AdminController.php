@@ -30,8 +30,6 @@ class AdminController extends Controller
         $keys = array_keys($grouped->toArray());
         $i = 0;
 
-//        dd($grouped[$keys[3]]->count());
-
         foreach ($slots->unique('date') as $slot)
         {
             $events[] = [
@@ -61,6 +59,18 @@ class AdminController extends Controller
         $pilots->load(['availables' => function($query) use ($request){
             $query->where('date', $request->now);
         }]);
+        return response()->json($pilots);
+    }
+
+    public function availablePilotsForFlightAjax(Request $request)
+    {
+        $pilots = Available::with('user')->where('date_slot', new Carbon($request->slot))->get()->map(function ($item){
+            return [
+                'id' => $item->id,
+                'pilot_id' => $item->user->id,
+                'pilot_name' => $item->user->name
+            ];
+        });
         return response()->json($pilots);
     }
 
