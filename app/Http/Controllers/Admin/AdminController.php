@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Available;
+use App\Models\Flight;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ class AdminController extends Controller
 {
     public function index()
     {
+        $flights = Flight::all();
         $events = array();
         $slots = Available::all()->map(function ($item) {
             return [
@@ -21,7 +23,6 @@ class AdminController extends Controller
                 'user_id' => $item->user_id
             ];
         });
-
 
         $grouped = $slots->groupBy('date')->map(function($item){
             return $item->unique('user_id');
@@ -41,7 +42,7 @@ class AdminController extends Controller
         }
 
 //        dd($events);
-        return view('admin.dashboard', ['slots' => $events]);
+        return view('admin.dashboard', ['slots' => $events, 'flights' => $flights]);
     }
 
     public function availablePilotsAjax(Request $request)

@@ -158,6 +158,7 @@
 {{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
 {{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
 {{--                </section>--}}
+
 {{--                <section class='admin-total-wrap'><strong>Slot 3: </strong><span class='slots'><label><input--}}
 {{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
 {{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
@@ -232,27 +233,13 @@
                 <div class="flight-div-content" id="bergwelt_panoramaflug-div">
                 </div>
             </li>
+            <li>
+                <button class="btn btn-primary" id="assign-flight"> Assign Flight</button>
+            </li>
         </ul>
         <hr>
         <h2 class="calender-title">Available Pilots (Pilot Availability Calendar)</h2>
         <div id="available_pilots">
-            <section class='admin-total-wrap'>
-                <strong>John Doe: </strong>
-                <span class='slots'>
-                <label>
-                    <input name='selectDate' type='radio'/>
-                    <span>8:00 AM</span>
-                </label>
-                    <label>
-                    <input name='selectDate' type='radio'/>
-                    <span>8:00 AM</span>
-                </label>
-                    <label>
-                    <input name='selectDate' type='radio'/>
-                    <span>8:00 AM</span>
-                </label>
-            </span>
-            </section>
         </div>
     </div>
 </div>
@@ -370,10 +357,8 @@
                 "                        </label>\n" +
                 "                    </span>\n" +
                 "                    <span class='assign'>\n" +
-                "                    <div id='"+id+"_first'>\n" +
-                "                        <select class='form-control' onclick=getPilots('" + id + "_first','09:00')>\n" +
-                "                            <option value='first'>Assign To</option>\n" +
-                "                        </select>\n" +
+                "                    <div id='" + id + "_first'>\n" +
+                getPilots(id + '_first', '09:00') +
                 "                    </div>\n" +
                 "                    </span>\n" +
                 "                </section>\n" +
@@ -386,10 +371,8 @@
                 "                        </label>\n" +
                 "                    </span>\n" +
                 "                    <span class='assign'>\n" +
-                "                    <div id='"+id+"_second'>\n" +
-                "                        <select class='form-control' onclick=getPilots('" + id + "_second','10:00')>\n" +
-                "                            <option>Assign To</option>\n" +
-                "                        </select>\n" +
+                "                    <div id='" + id + "_second'>\n" +
+                getPilots(id + '_second', '10:00') +
                 "                    </div>\n" +
                 "                    </span>\n" +
                 "                </section>\n" +
@@ -402,10 +385,8 @@
                 "                        </label>\n" +
                 "                    </span>\n" +
                 "                    <span class='assign'>\n" +
-                "                    <div id='"+id+"_third'>\n" +
-                "                        <select class='form-control' onclick=getPilots('" + id + "_third','14:00')>\n" +
-                "                            <option>Assign To</option>\n" +
-                "                        </select>\n" +
+                "                    <div id='" + id + "_third'>\n" +
+                getPilots(id + '_third', '14:00') +
                 "                    </div>\n" +
                 "                    </span>\n" +
                 "                </section>";
@@ -419,7 +400,6 @@
             day = $('#date').val();
             time = time_slot;
             slot = `${day}T${time}`;
-            // console.log(slot)
             $.ajax({
                 url: "{{route('available.pilots.for.flight.ajax')}}",
                 method: 'post',
@@ -428,20 +408,23 @@
                     slot: slot,
                 },
                 success: function (res) {
-                    let html = "<select class='form-control' onclick=getPilots('" + id + "_second','10:00')>\n";
+                    let html = "<select class='form-control'>\n";
                     html += "<option>Assign To</option>\n";
-                    for(let i=0; i<res.length; i++)
-                    {
-                        html += "<option value='"+ res[i].pilot_id +"'>"+res[i].pilot_name+"</option>\n";
+                    for (let i = 0; i < res.length; i++) {
+                        html += "<option value='" + res[i].pilot_id + "'>" + res[i].pilot_name + "</option>\n";
                     }
-                    html +=  "</select>\n";
-                    $('#'+id).html(html);
-                    // console.log($('#'+id).html())
+                    html += "</select>\n";
+                    $('#' + id).html(html);
                 },
                 error: function (res) {
                     console.log(res);
                 }
             });
         }
+
+        $('#assign-flight').on('click', function (e) {
+
+        })
     </script>
+    
 @endsection
