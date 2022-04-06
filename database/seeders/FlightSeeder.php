@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Flight;
+use App\Models\Timeslot;
 use Illuminate\Database\Seeder;
 
 class FlightSeeder extends Seeder
@@ -14,6 +15,7 @@ class FlightSeeder extends Seeder
      */
     public function run()
     {
+        $timeslots = Timeslot::all()->pluck('id')->toArray();
         $flights = [
             [
                 'name' => "Gleitflug",
@@ -34,7 +36,8 @@ class FlightSeeder extends Seeder
 
         foreach ($flights as $flight)
         {
-            Flight::create($flight);
+            $flight = Flight::create($flight);
+            $flight->timeslots()->sync($timeslots);
         }
     }
 }

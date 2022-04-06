@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Flight extends Model
+class Timeslot extends Model
 {
     use HasFactory;
 
-    public function timeslots()
+    public function flights()
     {
-        return $this->belongsToMany(Timeslot::class);
+        return $this->belongsToMany(Flight::class);
     }
 }

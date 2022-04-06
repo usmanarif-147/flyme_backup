@@ -13,7 +13,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $flights = Flight::all();
         $events = array();
         $slots = Available::all()->map(function ($item) {
             return [
@@ -24,15 +23,14 @@ class AdminController extends Controller
             ];
         });
 
-        $grouped = $slots->groupBy('date')->map(function($item){
+        $grouped = $slots->groupBy('date')->map(function ($item) {
             return $item->unique('user_id');
         });
 
         $keys = array_keys($grouped->toArray());
         $i = 0;
 
-        foreach ($slots->unique('date') as $slot)
-        {
+        foreach ($slots->unique('date') as $slot) {
             $events[] = [
                 'id' => $slot['id'],
                 'start' => $slot['date'],
@@ -42,14 +40,28 @@ class AdminController extends Controller
         }
 
 //        dd($events);
-        return view('admin.dashboard', ['slots' => $events, 'flights' => $flights]);
+        return view('admin.dashboard', ['slots' => $events]);
     }
 
     public function availablePilotsAjax(Request $request)
     {
+        $flights = Flight::all()->map(function ($flight) use ($request) {
+            return [
+                'id' => $flight->id,
+                'name' => $flight->name,
+                'timeslots' => $flight->timeslots->map(function ($timeslot) use ($request) {
+                    return [
+                        'id' => $timeslot->id,
+                        'time_slot' => timeDayFormat($timeslot->time_slot),
+                        'pilots' => $this->getPilots($request->now.'T'.timeWithoutSecondsFormat($timeslot->time_slot)),
+//                        'day_slot' => $request->now.'T'.timeWithoutSecondsFormat($timeslot->time_slot)
+                    ];
+                })
+            ];
+        });
         /**
          * fetch all pilots where relation exist and date matches in child table
-        */
+         */
         $pilots = User::whereHas('availables', function ($query) use ($request) {
             $query->where('date', new Carbon($request->now));
         })->get();
@@ -57,15 +69,42 @@ class AdminController extends Controller
         /**
          * fetch child table data
          */
-        $pilots->load(['availables' => function($query) use ($request){
+        $pilots = $pilots->load(['availables' => function ($query) use ($request) {
             $query->where('date', $request->now);
         }]);
-        return response()->json($pilots);
+
+        $pilots = $pilots->map(function ($pilot) {
+            return [
+                'id' => $pilot->id,
+                'name' => $pilot->name,
+                'time_slots' => $pilot->availables->map(function ($available) {
+                    return [
+                        'id' => $available->id,
+                        'date' => $available->date,
+                        'time' => $available->slot,
+                        'date_slot' => $available->date_slot
+                    ];
+                })
+            ];
+        });
+
+        return response()->json(['pilots' => $pilots, 'flights' => $flights]);
+    }
+
+    private function getPilots($slot)
+    {
+        return Available::with('user')->where('date_slot', new Carbon($slot))->get()->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'pilot_id' => $item->user->id,
+                'pilot_name' => $item->user->name
+            ];
+        });
     }
 
     public function availablePilotsForFlightAjax(Request $request)
     {
-        $pilots = Available::with('user')->where('date_slot', new Carbon($request->slot))->get()->map(function ($item){
+        $pilots = Available::with('user')->where('date_slot', new Carbon($request->slot))->get()->map(function ($item) {
             return [
                 'id' => $item->id,
                 'pilot_id' => $item->user->id,
@@ -99,4 +138,5 @@ class AdminController extends Controller
     {
         return view('admin.update_password');
     }
+
 }
