@@ -82,149 +82,10 @@
                         </div>
                     </div>
                 </div>
-                {{--                <div class="col-md-12">--}}
-                {{--                    <div class="card mb-3">--}}
-                {{--                        <div class="card-header-tab card-header">--}}
-                {{--                            <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i--}}
-                {{--                                    class="pe-7s-user mr-3 text-muted opacity-6"--}}
-                {{--                                    style="font-size: 35px; color: #b68812 !important;"> </i>Pilot Availability Calendar--}}
-                {{--                            </div>--}}
-                {{--                        </div>--}}
-                {{--                        <div class="card-body">--}}
-                {{--                            <div id="pilot-availability-calendar"></div>--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
             </div>
         </div>
     </div>
 @endsection
-{{--<div class="calender-details">--}}
-{{--    <i class="fa fa-times cross-pop"></i>--}}
-{{--    <div class="calender-content">--}}
-{{--        <ul class="flights-wrapper">--}}
-{{--            <li>--}}
-{{--                <h2 class="calender-title event-title">Gleitflug</h2>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 1: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 2: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 3: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--            </li>--}}
-{{--            <li>--}}
-{{--                <h2 class="calender-title event-title">Happy Flug</h2>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 1: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 2: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 3: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--            </li>--}}
-{{--            <li>--}}
-{{--                <h2 class="calender-title event-title">Über den Gipfel</h2>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 1: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 2: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 3: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--            </li>--}}
-{{--            <li>--}}
-{{--                <h2 class="calender-title event-title">Actionflug</h2>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 1: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 2: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-
-{{--                <section class='admin-total-wrap'><strong>Slot 3: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--            </li>--}}
-{{--            <li>--}}
-{{--                <h2 class="calender-title event-title">Bergwelt Panoramaflug</h2>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 1: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 2: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--                <section class='admin-total-wrap'><strong>Slot 3: </strong><span class='slots'><label><input--}}
-{{--                                name='selectDate' type='radio'/><span>8:00 AM</span></label></span><span class='assign'><select--}}
-{{--                            class='form-control'><option>Assign To</option><option>John Doe</option><option>John Doe</option></select></span>--}}
-{{--                </section>--}}
-{{--            </li>--}}
-{{--        </ul>--}}
-{{--        <hr>--}}
-{{--        <h2 class="calender-title">Available Pilots (Pilot Availability Calendar)</h2>--}}
-{{--        <section class='admin-total-wrap'><strong>John Doe: </strong> <span class='slots'><label><input--}}
-{{--                        name='selectDate' type='radio'/><span>8:00 AM</span></label><label><input name='selectDate'--}}
-{{--                                                                                                  type='radio'/><span>8:00 AM</span></label><label><input--}}
-{{--                        name='selectDate' type='radio'/><span>8:00 AM</span></label></span></section>--}}
-{{--        <section class='admin-total-wrap'><strong>John Doe: </strong> <span class='slots'><label><input--}}
-{{--                        name='selectDate' type='radio'/><span>8:00 AM</span></label></span></section>--}}
-{{--        <section class='admin-total-wrap'><strong>John Doe: </strong> <span class='slots'><label><input--}}
-{{--                        name='selectDate' type='radio'/><span>8:00 AM</span></label></span></section>--}}
-{{--        <section class='admin-total-wrap'>--}}
-{{--            <strong>John Doe: </strong>--}}
-{{--            <span class='slots'>--}}
-{{--                <label>--}}
-{{--                    <input name='selectDate' type='radio'/>--}}
-{{--                    <span>8:00 AM</span>--}}
-{{--                </label>--}}
-{{--            </span>--}}
-{{--        </section>--}}
-{{--    </div>--}}
-{{--</div>--}}
-
-
-{{--<li>--}}
-{{--    <h2 class="calender-title event-title">Gleitflug</h2>--}}
-{{--    <section class='admin-total-wrap'>--}}
-{{--        <strong>Slot 1: </strong>--}}
-{{--        <span class='slots'>--}}
-{{--                <label>--}}
-{{--                    <input name='selectDate' type='radio'/>--}}
-{{--                    <span>8:00 AM</span>--}}
-{{--                </label>--}}
-{{--            </span>--}}
-{{--        <span class='assign'>--}}
-{{--                <select class='form-control'>--}}
-{{--                    <option>Assign To</option>--}}
-{{--                    <option>John Doe</option>--}}
-{{--                    <option>John Doe</option>--}}
-{{--                </select>--}}
-{{--            </span>--}}
-{{--    </section>--}}
-{{--</li>--}}
-{{--<li>--}}
-{{--    <button class="btn btn-primary" id="assign-flight"> Assign Flight</button>--}}
-{{--</li>--}}
 
 <input type="hidden" id="date">
 <div class="calender-details">
@@ -232,34 +93,6 @@
     <div class="calender-content">
         <h2 style="color: black" id="popup-date"> Date </h2>
         <ul class="flights-wrapper">
-            {{--            <li>--}}
-            {{--                <h2 class="calender-title event-title" id="gleitflug">Gleitflug</h2>--}}
-            {{--                <div class="flight-div-content" id="gleitflug-div">--}}
-            {{--                </div>--}}
-            {{--            </li>--}}
-            {{--            <li>--}}
-            {{--                <h2 class="calender-title event-title" id="happy_flug">Happy Flug</h2>--}}
-            {{--                <div class="flight-div-content" id="happy_flug-div">--}}
-            {{--                </div>--}}
-            {{--            </li>--}}
-            {{--            <li>--}}
-            {{--                <h2 class="calender-title event-title" id="uber_den_gipfel">Über den Gipfel</h2>--}}
-            {{--                <div class="flight-div-content" id="uber_den_gipfel-div">--}}
-            {{--                </div>--}}
-            {{--            </li>--}}
-            {{--            <li>--}}
-            {{--                <h2 class="calender-title event-title" id="actionflug">Actionflug</h2>--}}
-            {{--                <div class="flight-div-content" id="actionflug-div">--}}
-            {{--                </div>--}}
-            {{--            </li>--}}
-            {{--            <li>--}}
-            {{--                <h2 class="calender-title event-title" id="bergwelt_panoramaflug">Bergwelt Panoramaflug</h2>--}}
-            {{--                <div class="flight-div-content" id="bergwelt_panoramaflug-div">--}}
-            {{--                </div>--}}
-            {{--            </li>--}}
-            {{--            <li>--}}
-            {{--                <button class="btn btn-primary" id="assign-flight"> Assign Flight</button>--}}
-            {{--            </li>--}}
         </ul>
         <hr>
         <h2 class="calender-title">Available Pilots (Pilot Availability Calendar)</h2>
@@ -270,8 +103,18 @@
 
 @section('script')
     <script>
-        // document.addEventListener('DOMContentLoaded', function () {
-        $(document).ready(function () {
+        let assign_flights_array = [
+            [],
+            [],
+            [],
+            []
+        ];
+        let gle_arr = [];
+        let happy_arr = [];
+        let uber_arr = [];
+        let action_arr = [];
+        let berg_arr = [];
+        document.addEventListener('DOMContentLoaded', function () {
             let slots = @json($slots);
             let calendarE2 = document.getElementById('flight-booking-calendar');
             let calendar = new FullCalendar.Calendar(calendarE2, {
@@ -354,10 +197,13 @@
                                         "                </label>\n" +
                                         "            </span>\n" +
                                         "        <span class='assign'>\n" +
-                                        "                <select class='form-control' onchange=''>\n" +
-                                        "                    <option>Assign To</option>\n";
+                                        "                <select class='form-control select-pilot' >\n" +
+                                        "                    <option value='0'>Assign To</option>\n";
                                     for (let k = 0; k < flights[i].timeslots[j].pilots.length; k++) {
-                                        html_flights += "<option value='"+flights[i].timeslots[j].pilots[k].pilot_id+"'>" + flights[i].timeslots[j].pilots[k].pilot_name + "</option>\n";
+                                        html_flights += "<option value='" + flights[i].id + "," +
+                                            "" + flights[i].timeslots[j].id + "," +
+                                            "" + flights[i].timeslots[j].pilots[k].pilot_id + "'" +
+                                            ">" + flights[i].timeslots[j].pilots[k].pilot_name + "</option>\n";
                                     }
                                     html_flights += "                </select>\n" +
                                         "            </span>\n" +
@@ -365,7 +211,7 @@
                                 }
                                 html_flights += "</li>";
                             }
-                            html_flights +='<li>\n' +
+                            html_flights += '<li>\n' +
                                 '                                    <button class="btn btn-primary assign-flight" id="assign-flight"> Assign Flight</button>\n' +
                                 '                                </li>';
                             $('.flights-wrapper').html(html_flights)
@@ -398,102 +244,70 @@
                 $('.event-title').removeClass('active-event')
                 $('.flight-div-content').html('')
                 $(this).addClass('active-event')
-                // let id = $(this).prop('id') + '-' + 'div';
-                // htmlContent(id);
             }
         });
 
-        $('.choose-pilot').on('change', function(){
+        $(document).on('click', '#assign-flight', function () {
             alert("working");
         })
 
-        // function check() {
-        //     alert("working")
-        // }
+        $(document).on('change', '.select-pilot', function () {
+            let arr = $(this).val().split(',');
+            let firstIndex = parseInt(arr.shift()) - 1;
+            let index = firstIndex;
+            let value = arr.join(',')        // convert array to string
 
+            if (firstIndex === 0) {
+                gle_arr.push(value);
+                for (let i = 0; i < gle_arr.length; i++) {
+                    if(gle_arr[i].split(',')[0] === value.split(',')[0]){
+                        alert("yes")
+                    }
+                    else{
+                        alert("no")
+                    }
+                }
+                // if (!gle_arr.includes(value)) {
+                //     gle_arr.push(value);
+                // }
+                // console.log(gle_arr)
+            }
+            if (firstIndex === 1) {
+                happy_arr.push(value);
+                if (!gle_arr.includes(value)) {
+                    gle_arr.push(value);
+                }
+                console.log(happy_arr)
+            }
+            if (firstIndex === 2) {
+                uber_arr.push(value);
+                console.log(uber_arr)
+            }
+            if (firstIndex === 3) {
+                action_arr.push(value);
+                console.log(action_arr)
+            }
+            if (firstIndex === 4) {
+                berg_arr.push(value);
+                console.log(berg_arr)
+            }
+            // if(assign_flights_array[index].indexOf(value) === -1) {
+            //     assign_flights_array[index].push(value);
+            //     console.log(assign_flights_array);
+            // }
+            //
+            // for (let i = 0; i < assign_flights_array.length; i++) {
+            //     for (let j = 0; j < assign_flights_array[i].length; j++) {
+            //         console.log(assign_flights_array[i][j])
+            //     }
+            // }
 
-        {{--function htmlContent(id) {--}}
-        {{--    let html =--}}
-        {{--        "                 <section class='admin-total-wrap'>\n" +--}}
-        {{--        "                    <strong>Slot 1: </strong>\n" +--}}
-        {{--        "                    <span class='slots'>\n" +--}}
-        {{--        "                        <label>\n" +--}}
-        {{--        "                            <input name='selectDate' type='radio'/>\n" +--}}
-        {{--        "                            <span>09:00 AM</span>\n" +--}}
-        {{--        "                        </label>\n" +--}}
-        {{--        "                    </span>\n" +--}}
-        {{--        "                    <span class='assign'>\n" +--}}
-        {{--        "                    <div id='" + id + "_first'>\n" +--}}
-        {{--        getPilots(id + '_first', '09:00') +--}}
-        {{--        "                    </div>\n" +--}}
-        {{--        "                    </span>\n" +--}}
-        {{--        "                </section>\n" +--}}
-        {{--        "                <section class='admin-total-wrap'>\n" +--}}
-        {{--        "                    <strong>Slot 2: </strong>\n" +--}}
-        {{--        "                    <span class='slots'>\n" +--}}
-        {{--        "                        <label>\n" +--}}
-        {{--        "                            <input name='selectDate' type='radio'/>\n" +--}}
-        {{--        "                            <span>10:00 AM</span>\n" +--}}
-        {{--        "                        </label>\n" +--}}
-        {{--        "                    </span>\n" +--}}
-        {{--        "                    <span class='assign'>\n" +--}}
-        {{--        "                    <div id='" + id + "_second'>\n" +--}}
-        {{--        getPilots(id + '_second', '10:00') +--}}
-        {{--        "                    </div>\n" +--}}
-        {{--        "                    </span>\n" +--}}
-        {{--        "                </section>\n" +--}}
-        {{--        "                <section class='admin-total-wrap'>\n" +--}}
-        {{--        "                    <strong>Slot 3: </strong>\n" +--}}
-        {{--        "                    <span class='slots'>\n" +--}}
-        {{--        "                        <label>\n" +--}}
-        {{--        "                            <input name='selectDate' type='radio'/>\n" +--}}
-        {{--        "                            <span>14:00 PM</span>\n" +--}}
-        {{--        "                        </label>\n" +--}}
-        {{--        "                    </span>\n" +--}}
-        {{--        "                    <span class='assign'>\n" +--}}
-        {{--        "                    <div id='" + id + "_third'>\n" +--}}
-        {{--        getPilots(id + '_third', '14:00') +--}}
-        {{--        "                    </div>\n" +--}}
-        {{--        "                    </span>\n" +--}}
-        {{--        "                </section>";--}}
-        {{--    $("#" + id).html(html)--}}
-        {{--}--}}
-
-        {{--function getPilots(id, time_slot) {--}}
-        {{--    let slot = "";--}}
-        {{--    let day = "";--}}
-        {{--    let time = time_slot;--}}
-        {{--    day = $('#date').val();--}}
-        {{--    time = time_slot;--}}
-        {{--    slot = `${day}T${time}`;--}}
-        {{--    $.ajax({--}}
-        {{--        url: "{{route('available.pilots.for.flight.ajax')}}",--}}
-        {{--        method: 'post',--}}
-        {{--        data: {--}}
-        {{--            _token: '{{csrf_token()}}',--}}
-        {{--            slot: slot,--}}
-        {{--        },--}}
-        {{--        success: function (res) {--}}
-        {{--            let html = "<select class='form-control'>\n";--}}
-        {{--            html += "<option>Assign To</option>\n";--}}
-        {{--            for (let i = 0; i < res.length; i++) {--}}
-        {{--                html += "<option value='" + res[i].pilot_id + "'>" + res[i].pilot_name + "</option>\n";--}}
-        {{--            }--}}
-        {{--            html += "</select>\n";--}}
-        {{--            $('#' + id).html(html);--}}
-        {{--        },--}}
-        {{--        error: function (res) {--}}
-        {{--            console.log(res);--}}
-        {{--        }--}}
-        {{--    });--}}
-        {{--}--}}
-
-        function assign() {
-            alert("working");
-        }
-
-        $('.assign-flight').onclick(function () {
-            alert("working")
+            // console.log(assign_flights_array)
+            // if (assign_flights_array.length === 0) {
+            //     assign_flights_array[parseInt(arr.shift()) - 1] = [value]
+            // } else {
+            //
+            // }
         })
     </script>
 
